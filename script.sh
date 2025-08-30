@@ -8,7 +8,7 @@ if  echo "$os" | grep -q "Ubuntu"; then
 	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 	sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
 	rm -f microsoft.gpg
-	cat <<EOF | sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null 
+	cat <<EOF| sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null 
 	Types: deb
 	URIs: https://packages.microsoft.com/repos/code
 	Suites: stable
