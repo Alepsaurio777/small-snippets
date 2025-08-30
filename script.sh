@@ -8,7 +8,7 @@ if  echo "$os" | grep -q "Ubuntu"; then
 	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 	sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
 	rm -f microsoft.gpg
-	cat /etc/apt/sources.list.d/vscode.sources << EOF
+	cat <<EOF | sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null 
 	Types: deb
 	URIs: https://packages.microsoft.com/repos/code
 	Suites: stable
@@ -16,9 +16,10 @@ if  echo "$os" | grep -q "Ubuntu"; then
 	Architectures: amd64,arm64,armhf
 	Signed-By: /usr/share/keyrings/microsoft.gpg
 	EOF
+
 	sudo apt install apt-transport-https
 	sudo apt update
-	sudo apt install code
+	sudo apt install code 
 
 elif echo "$os" | grep -q "Fedora"; then
 	echo "Es fedora"
